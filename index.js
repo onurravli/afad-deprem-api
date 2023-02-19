@@ -58,6 +58,52 @@ axios
             }
         });
 
+        //Deprem büyüklüğü
+        app.get("/buyukluk/:buyukluk", (req, res) => {
+            const buyukluk = req.params.buyukluk
+            if (buyukluk < 0) {
+                res.status(404).json({ error: "Deprem değerleri 1 ve üzerinde gösterilmektedir." });
+            } 
+            const trueEarthquakes = earthquakes.filter((earthquake) =>
+                earthquake.buyukluk > buyukluk
+            );
+            if (trueEarthquakes.length > 0) {
+                res.json(trueEarthquakes);
+            } else {
+                res.status(404).json({ error: "Deprem bulunamadı." });
+            }
+        });
+
+        app.get('/uzaklik/:lat/:lng', (req, res) => {
+            const { lat, lng } = req.params;
+          const sonuc=  _getCoordsDistance(lat,lng)
+            res.json(sonuc);
+        });
+
+        //Son Depreme Uzaklık Hesaplama
+        function _getCoordsDistance(lat, lng)
+	    {
+		// earth
+		var R = 6371, // km
+			lat1 = parseFloat(lat),
+			lat2 = parseFloat(earthquakes[0].enlem),
+			lon1 = parseFloat(lng),
+			lon2 = parseFloat(earthquakes[0].boylam);
+		
+		// deg2rad
+		lat1 = (lat1 / 180) * Math.PI;
+		lat2 = (lat2 / 180) * Math.PI;
+		lon1 = (lon1 / 180) * Math.PI;
+		lon2 = (lon2 / 180) * Math.PI;
+			
+	    // Equirectangular approximation
+	    // lower accuracy, higher performance
+	    var x = (lon2-lon1) * Math.cos((lat1+lat2)/2);
+		var y = (lat2-lat1);
+		var d = Math.sqrt(x*x + y*y) * R;
+		return Math.round(d );
+	}
+
         app.use((req, res, next) => {
             res.status(404).json({ error: "Sayfa bulunamadı." });
         });
