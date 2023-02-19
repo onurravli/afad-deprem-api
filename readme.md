@@ -8,4 +8,5 @@ Herhangi bir kimlik doğrulama gerektirmeyen endpointler.
 
 -   [Depremler](#/) : `GET /`
 -   [Son Deprem](#) : `GET /son-deprem/`
--   [Yer](#) : `GET /yer/<string:yer>/`
+-   [Büyüklük](#) : `GET /buyukluk/<number:buyukluk>/`
+-   [Uzaklık](#) : `GET /uzaklik/:lat/:lng`
