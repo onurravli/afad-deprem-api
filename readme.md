@@ -6,6 +6,6 @@ T.C. İçişleri Bakanlığı Afet ve Acil Durum Yönetimi Başkanlığı web si
 
 Herhangi bir kimlik doğrulama gerektirmeyen endpointler.
 
--   [Depremler](https://afad-deprem-api.vercel.app/) : `GET /`
--   [Son Deprem](https://afad-deprem-api.vercel.app/son-deprem/) : `GET /son-deprem/`
--   [Yer](https://afad-deprem-api.vercel.app/yer/hatay) : `GET /yer/<string:yer>/`
+-   [Depremler](#/) : `GET /`
+-   [Son Deprem](#) : `GET /son-deprem/`
+-   [Yer](#) : `GET /yer/<string:yer>/`
